@@ -1,0 +1,8 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"ActionResult": {
+		"_Name": "NavToAuditoria_Create"
+	},
+	"PageToOpen": "/AuditoriaMobile/Pages/Auditoria_Create.page",
+	"ModalPage": true
+}

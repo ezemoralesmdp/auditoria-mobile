@@ -1,0 +1,23 @@
+{
+    "Service": "/AuditoriaMobile/Services/Auditoria.service",
+    "DefiningRequests": [{
+            "Name": "Auditoria",
+            "Query": "Auditoria"
+        },
+        {
+            "Name": "Recomendacion",
+            "Query": "Recomendacion"
+        },
+        {
+            "Name": "TipoAuditoria",
+            "Query": "TipoAuditoria"
+        }
+    ],
+    "_Type": "Action.Type.ODataService.Initialize",
+    "ShowActivityIndicator": true,
+    "ActivityIndicatorText": "Downloading...",
+    "ActionResult": {
+        "_Name": "init"
+    },
+    "OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/InitializeOfflineFailureMessage.action"
+}

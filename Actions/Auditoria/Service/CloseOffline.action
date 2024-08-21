@@ -1,0 +1,10 @@
+{
+    "_Type": "Action.Type.OfflineOData.Close",
+    "Service": "/AuditoriaMobile/Services/Auditoria.service",
+    "Force": true,
+    "ActionResult": {
+        "_Name": "close"
+    },
+    "OnSuccess": "/AuditoriaMobile/Actions/Auditoria/Service/CloseOfflineSuccessMessage.action",
+    "OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/CloseOfflineFailureMessage.action"
+}

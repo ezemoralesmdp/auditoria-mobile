@@ -1,0 +1,7 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"ActionResult": {
+		"_Name": "NavToAuditoria_List"
+	},
+	"PageToOpen": "/AuditoriaMobile/Pages/Auditoria_List.page"
+}

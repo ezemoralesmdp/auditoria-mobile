@@ -1,0 +1,59 @@
+{
+	"Credential": "cf",
+	"Template": {
+		"Id": "@ext-mdkvsc-npm-dev/generator-mdk",
+		"Name": "Base",
+		"Version": "0.0.1"
+	},
+	"CF": {
+		"Target": "https://api.cf.us10-001.hana.ondemand.com",
+		"Organization": "50641a97-f80a-4cb2-8e2e-dc86fe069241",
+		"Space": "2c98e3fa-7f94-49bd-913d-df75c994429d",
+		"Deploy": {
+			"Description": "",
+			"WebClient": {
+				"Runtime": "production",
+				"URL": "https://mdk-webclient-runtime.cfapps.us10.hana.ondemand.com/runtime/"
+			},
+			"Destination": [
+				{
+					"CF": "Auditoria",
+					"MDK": "Auditoria",
+					"URL": ""
+				}
+			],
+			"Name": "ns.AuditoriaMobile",
+			"Version": "1.0.0",
+			"AppRouter": "standalone",
+			"Auth": true,
+			"URL": "https://769f798etrial-emorales-ebwzszn2-dev-nsauditoriamobile-approuter.cfapps.us10-001.hana.ondemand.com/nsAuditoriaMobile"
+		}
+	},
+	"MobileService": {
+		"Type": "standard",
+		"AdminAPI": "https://mobile-service-cockpit-api.cfapps.us10.hana.ondemand.com/cockpit/v1/org/50641a97-f80a-4cb2-8e2e-dc86fe069241/space/2c98e3fa-7f94-49bd-913d-df75c994429d",
+		"AppId": "emmsa.sap.mdk.auditoria",
+		"Destination": [
+			"com.sap.edm.sampleservice.v4",
+			"Auditoria"
+		]
+	},
+	"Onboarding": {
+		"Schema": "sapmobilesvcs",
+		"TimeZone": "UTC",
+		"URL": "sapmobilesvcs://?AppId=emmsa.sap.mdk.auditoria&ClientId=b31c84b5-b381-4e7d-afa9-990cbf312b3e&ServerUrl=https://emorales-ebwzszn2-dev-emmsa-sap-mdk-auditoria.cfapps.us10-001.hana.ondemand.com&SapCloudPlatformEndpoint=https://emorales-ebwzszn2-dev-emmsa-sap-mdk-auditoria.cfapps.us10-001.hana.ondemand.com&AuthorizationEndpointUrl=https://emorales-ebwzszn2-dev-emmsa-sap-mdk-auditoria.cfapps.us10-001.hana.ondemand.com/oauth2/api/v1/authorize&RedirectUrl=https://emorales-ebwzszn2-dev-emmsa-sap-mdk-auditoria.cfapps.us10-001.hana.ondemand.com&TokenUrl=https://emorales-ebwzszn2-dev-emmsa-sap-mdk-auditoria.cfapps.us10-001.hana.ondemand.com/oauth2/api/v1/token&multiUser=false"
+	},
+	"LCAP": {
+		"FullName": "",
+		"Service": [],
+		"sourceTemplate": {
+			"id": "html5moduletemplates.basicSAPUI5ApplicationProjectModule",
+			"version": "1.40.12"
+		}
+	},
+	"Build": {
+		"SourceMap": true,
+		"TSTarget": "es6",
+		"WMF": true
+	}
+}

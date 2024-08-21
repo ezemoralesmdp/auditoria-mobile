@@ -1,0 +1,10 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "DeleteAuditoriaEntityFailureMessage"
+	},
+	"Message": "No se pudo eliminar la entidad auditoría - {#ActionResults:Auditoria_DeleteEntity/error}",
+	"Title": "Eliminar auditoría",
+	"OKCaption": "Confirmar",
+	"CancelCaption": "Cancelar"
+}

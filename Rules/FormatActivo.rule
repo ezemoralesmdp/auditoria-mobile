@@ -1,0 +1,4 @@
+{
+ "rulecode": "/AuditoriaMobile/Rules/FormatActivo.rule.js",
+ "rulemodel": "<xml xmlns='http://www.w3.org/1999/xhtml'><block type='controls_if' id='7' x='102' y='90'><mutation else='1'></mutation></block><block type='procedures_defreturn' id='1' inline='false' x='200' y='100'><mutation><arg name='clientAPI'></arg></mutation><field name='NAME'>FormatActivo</field><comment pinned='false' h='80' w='160'>Describe this function...\n@param {IClientAPI} clientAPI</comment><data>default function</data></block></xml>"
+}

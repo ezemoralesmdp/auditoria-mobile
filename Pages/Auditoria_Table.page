@@ -1,0 +1,110 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"Section": {
+				"Header": {
+					"DataTable": {
+						"Items": [
+							{
+								"Text": "ID",
+								"NumberOfLines": 1
+							},
+							{
+								"Text": "Descripción",
+								"NumberOfLines": 1
+							},
+							{
+								"Text": "Tipo de auditoría",
+								"NumberOfLines": 1
+							}
+						]
+					},
+					"_Name": "SectionDataTableHeader6",
+					"AccessoryType": "None",
+					"UseTopPadding": true
+				},
+				"Separators": {
+					"TopSectionSeparator": true,
+					"BottomSectionSeparator": true,
+					"HeaderSeparator": true,
+					"FooterSeparator": true,
+					"ControlSeparator": true
+				},
+				"Row": {
+					"Items": [
+						{
+							"Value": "{ID}",
+							"DisplayType": "Text",
+							"EditType": "Text",
+							"NumberOfLines": 1,
+							"TextAlignment": "Left",
+							"ListPicker": {
+								"PickerItems": []
+							}
+						},
+						{
+							"Value": "{DESCRIPCION}",
+							"DisplayType": "Text",
+							"EditType": "Text",
+							"NumberOfLines": 1,
+							"TextAlignment": "Left",
+							"ListPicker": {
+								"PickerItems": []
+							}
+						},
+						{
+							"Value": "{TIPOAUDITORIA_ID}",
+							"DisplayType": "Text",
+							"EditType": "Text",
+							"NumberOfLines": 1,
+							"TextAlignment": "Left",
+							"ListPicker": {
+								"PickerItems": []
+							}
+						}
+					],
+					"Layout": {
+						"ColumnWidth": []
+					}
+				},
+				"_Type": "Section.Type.DataTable",
+				"DataSubscriptions": [],
+				"Target": {
+					"Service": "/AuditoriaMobile/Services/Auditoria.service",
+					"EntitySet": "Auditoria",
+					"ServerSidePaging": false
+				},
+				"_Name": "SectionDataTable1",
+				"Visible": true,
+				"EmptySection": {
+					"FooterVisible": false
+				},
+				"EditMode": "None",
+				"Search": {
+					"Enabled": true,
+					"Placeholder": "Buscar..."
+				},
+				"DataPaging": {
+					"ShowLoadingIndicator": true,
+					"LoadingIndicatorText": "Cargando...",
+					"PageSize": 5
+				},
+				"StickyColumn": false
+			},
+			"_Type": "Control.Type.SectionedTable",
+			"Target": {
+				"Service": "/AuditoriaMobile/Services/Auditoria.service",
+				"EntitySet": "Auditoria"
+			},
+			"_Name": "SectionedTable0"
+		}
+	],
+	"_Type": "Page",
+	"_Name": "Auditoria_Table",
+	"Caption": "Auditorías",
+	"PrefersLargeCaption": true
+}

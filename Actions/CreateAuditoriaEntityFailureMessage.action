@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "CreateAuditoriaEntityFailureMessage"
+	},
+	"Message": "No se pudo crear el nuevo registro de Auditoría - {#ActionResults:Auditoria_CreateEntity/error}",
+	"Title": "Crear auditoría",
+	"OKCaption": "Aceptar"
+}

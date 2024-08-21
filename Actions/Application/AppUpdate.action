@@ -1,0 +1,8 @@
+{
+    "_Type": "Action.Type.ApplicationUpdate",
+    "ActionResult": {
+        "_Name": "AppUpdate"
+    },
+    "OnFailure": "/AuditoriaMobile/Rules/Application/AppUpdateFailure.js",
+    "OnSuccess": "/AuditoriaMobile/Rules/Application/AppUpdateSuccess.js"
+}
