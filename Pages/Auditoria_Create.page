@@ -106,6 +106,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"
 			},
 			{
@@ -115,6 +116,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/Auditoria_CreateEntity.action"
 			}
 		],

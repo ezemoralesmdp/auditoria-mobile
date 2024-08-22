@@ -329,6 +329,74 @@ function CheckForSyncError(context) {
 
 /***/ }),
 
+/***/ "./build.definitions/AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_DecideWhichEditPage.js":
+/*!**************************************************************************************************!*\
+  !*** ./build.definitions/AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_DecideWhichEditPage.js ***!
+  \**************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ ErrorArchive_DecideWhichEditPage)
+/* harmony export */ });
+/**
+ * Describe this function...
+ * @param {IClientAPI} clientAPI
+ */
+function ErrorArchive_DecideWhichEditPage(clientAPI) {
+    // Current binding's root is the errorArchiveEntity:
+    let errorArchiveEntity = clientAPI.binding;
+
+    // Get the affectedEntity object out of it
+    let affectedEntity = errorArchiveEntity.AffectedEntity;
+
+    console.log("La entidad afectada es:");
+    console.log(affectedEntity);
+
+    let targetAction = null;
+    let id = affectedEntity["@odata.id"]; // e.g. PurchaseOrderHeaders(12345)
+    let affectedEntityType = "Conjunto de entidades desconocidas"; // By default it's unknown type
+
+    if (id.indexOf("(") > 0) {
+        // Extracting the entity set type from @odata.id e.g. PurchaseOrderHeaders
+        var patt = /\/?(.+)\(/i;
+        var result = id.match(patt);
+        affectedEntityType = result[1];
+    }
+
+    console.log("Affected Entity Type Is:");
+    console.log(affectedEntityType);
+
+    // Here we decide which action to call depends on which affectedEntityType is the affectedEntity
+    // You can add more complex decision logic if needed
+    switch (affectedEntityType) {
+        case "Auditoria":
+            targetAction = "/AuditoriaMobile/Actions/NavToAuditoria_Edit.action";
+            break;
+        default:
+            // Save the affected Entity's type in client data so that it can be displayed by the toast
+            clientAPI.getPageProxy().getClientData().AffectedEntityType = affectedEntityType;
+            // Show a toast for affectedEntityType that we do not handle yet
+            return clientAPI.executeAction("/AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_UnknownAffectedEntity.action");
+    }
+
+    if (targetAction) {
+        let pageProxy = clientAPI.getPageProxy();
+
+        // Set the affectedEntity object to root the binding context.
+        pageProxy.setActionBinding(affectedEntity);
+
+        // Note: doing 'return' here is important to chain the current context to the action.
+        // Without the return the ActionBinding will not be passed to the action because it will consider
+        // you are executing this action independent of the current context.
+        return clientAPI.executeAction(targetAction);
+    }
+}
+
+
+/***/ }),
+
 /***/ "./build.definitions/AuditoriaMobile/Rules/FormatActivo.rule.js":
 /*!**********************************************************************!*\
   !*** ./build.definitions/AuditoriaMobile/Rules/FormatActivo.rule.js ***!
@@ -716,6 +784,7 @@ let auditoriamobile_actions_closepage_action = __webpack_require__(/*! ./Auditor
 let auditoriamobile_actions_createauditoriaentityfailuremessage_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/CreateAuditoriaEntityFailureMessage.action */ "./build.definitions/AuditoriaMobile/Actions/CreateAuditoriaEntityFailureMessage.action")
 let auditoriamobile_actions_deleteauditoriaentityfailuremessage_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/DeleteAuditoriaEntityFailureMessage.action */ "./build.definitions/AuditoriaMobile/Actions/DeleteAuditoriaEntityFailureMessage.action")
 let auditoriamobile_actions_errorarchive_errorarchive_syncfailure_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_SyncFailure.action */ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_SyncFailure.action")
+let auditoriamobile_actions_errorarchive_errorarchive_unknownaffectedentity_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_UnknownAffectedEntity.action */ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_UnknownAffectedEntity.action")
 let auditoriamobile_actions_errorarchive_navtoerrorarchive_detail_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_Detail.action */ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_Detail.action")
 let auditoriamobile_actions_errorarchive_navtoerrorarchive_list_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_List.action */ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_List.action")
 let auditoriamobile_actions_genericbannermessage_action = __webpack_require__(/*! ./AuditoriaMobile/Actions/GenericBannerMessage.action */ "./build.definitions/AuditoriaMobile/Actions/GenericBannerMessage.action")
@@ -758,6 +827,7 @@ let auditoriamobile_rules_application_onwillupdate_js = __webpack_require__(/*! 
 let auditoriamobile_rules_application_resetappsettingsandlogout_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/Application/ResetAppSettingsAndLogout.js */ "./build.definitions/AuditoriaMobile/Rules/Application/ResetAppSettingsAndLogout.js")
 let auditoriamobile_rules_auditoria_deleteconfirmation_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/Auditoria_DeleteConfirmation.js */ "./build.definitions/AuditoriaMobile/Rules/Auditoria_DeleteConfirmation.js")
 let auditoriamobile_rules_errorarchive_errorarchive_checkforsyncerror_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_CheckForSyncError.js */ "./build.definitions/AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_CheckForSyncError.js")
+let auditoriamobile_rules_errorarchive_errorarchive_decidewhicheditpage_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_DecideWhichEditPage.js */ "./build.definitions/AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_DecideWhichEditPage.js")
 let auditoriamobile_rules_formatactivo_rule_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/FormatActivo.rule.js */ "./build.definitions/AuditoriaMobile/Rules/FormatActivo.rule.js")
 let auditoriamobile_rules_logging_loglevels_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/Logging/LogLevels.js */ "./build.definitions/AuditoriaMobile/Rules/Logging/LogLevels.js")
 let auditoriamobile_rules_logging_settracecategories_js = __webpack_require__(/*! ./AuditoriaMobile/Rules/Logging/SetTraceCategories.js */ "./build.definitions/AuditoriaMobile/Rules/Logging/SetTraceCategories.js")
@@ -809,6 +879,7 @@ module.exports = {
 	auditoriamobile_actions_createauditoriaentityfailuremessage_action : auditoriamobile_actions_createauditoriaentityfailuremessage_action,
 	auditoriamobile_actions_deleteauditoriaentityfailuremessage_action : auditoriamobile_actions_deleteauditoriaentityfailuremessage_action,
 	auditoriamobile_actions_errorarchive_errorarchive_syncfailure_action : auditoriamobile_actions_errorarchive_errorarchive_syncfailure_action,
+	auditoriamobile_actions_errorarchive_errorarchive_unknownaffectedentity_action : auditoriamobile_actions_errorarchive_errorarchive_unknownaffectedentity_action,
 	auditoriamobile_actions_errorarchive_navtoerrorarchive_detail_action : auditoriamobile_actions_errorarchive_navtoerrorarchive_detail_action,
 	auditoriamobile_actions_errorarchive_navtoerrorarchive_list_action : auditoriamobile_actions_errorarchive_navtoerrorarchive_list_action,
 	auditoriamobile_actions_genericbannermessage_action : auditoriamobile_actions_genericbannermessage_action,
@@ -851,6 +922,7 @@ module.exports = {
 	auditoriamobile_rules_application_resetappsettingsandlogout_js : auditoriamobile_rules_application_resetappsettingsandlogout_js,
 	auditoriamobile_rules_auditoria_deleteconfirmation_js : auditoriamobile_rules_auditoria_deleteconfirmation_js,
 	auditoriamobile_rules_errorarchive_errorarchive_checkforsyncerror_js : auditoriamobile_rules_errorarchive_errorarchive_checkforsyncerror_js,
+	auditoriamobile_rules_errorarchive_errorarchive_decidewhicheditpage_js : auditoriamobile_rules_errorarchive_errorarchive_decidewhicheditpage_js,
 	auditoriamobile_rules_formatactivo_rule_js : auditoriamobile_rules_formatactivo_rule_js,
 	auditoriamobile_rules_logging_loglevels_js : auditoriamobile_rules_logging_loglevels_js,
 	auditoriamobile_rules_logging_settracecategories_js : auditoriamobile_rules_logging_settracecategories_js,
@@ -903,7 +975,25 @@ Page
 
 { color: @mdkYellow1; background-color: @mdkRed1; }
 */
-`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/\n"],"sourceRoot":""}]);
+MDKPage {
+  background-color: #f5f6f7;
+}
+ActionBar {
+  background-color: #2f4c92;
+}
+ActionBarTitle {
+  color: #f5f6f7;
+  font-weight: 600;
+  font-style: normal;
+}
+.MainButton {
+  color: #f5f6f7;
+  background-color: #2f4c92;
+}
+.Icon {
+  color: #f5f6f7;
+}
+`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.css"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC;AACD;EACE,yBAAyB;AAC3B;AACA;EACE,yBAAyB;AAC3B;AACA;EACE,cAAc;EACd,gBAAgB;EAChB,kBAAkB;AACpB;AACA;EACE,cAAc;EACd,yBAAyB;AAC3B;AACA;EACE,cAAc;AAChB","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/\nMDKPage {\n  background-color: #f5f6f7;\n}\nActionBar {\n  background-color: #2f4c92;\n}\nActionBarTitle {\n  color: #f5f6f7;\n  font-weight: 600;\n  font-style: normal;\n}\n.MainButton {\n  color: #f5f6f7;\n  background-color: #2f4c92;\n}\n.Icon {\n  color: #f5f6f7;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -941,7 +1031,33 @@ Page
 .MyButton
 
 { color: @mdkYellow1; background-color: @mdkRed1; }
-*/`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/"],"sourceRoot":""}]);
+*/
+
+@ledesmaBlue: #2f4c92;
+@ledesmaWhite: #f5f6f7;
+
+MDKPage {
+    background-color: @ledesmaWhite;
+}
+
+ActionBar {
+    background-color: @ledesmaBlue;
+}
+
+ActionBarTitle {
+    color: @ledesmaWhite; 
+    font-weight: 600;
+    font-style: normal;
+}
+
+.MainButton {
+    color: @ledesmaWhite;
+    background-color: @ledesmaBlue;
+}
+
+.Icon {
+    color: @ledesmaWhite;
+}`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.less"],"names":[],"mappings":"AAAA;;;;;;;;;;;;;;;;;;;;CAoBC;;AAED,qBAAqB;AACrB,sBAAsB;;AAEtB;IACI,+BAA+B;AACnC;;AAEA;IACI,8BAA8B;AAClC;;AAEA;IACI,oBAAoB;IACpB,gBAAgB;IAChB,kBAAkB;AACtB;;AAEA;IACI,oBAAoB;IACpB,8BAA8B;AAClC;;AAEA;IACI,oBAAoB;AACxB","sourcesContent":["/* The LESS stylesheet provides the ability to define styling styles that can be used to style the UI in the MDK app.\n\nExamples:\n\n@mdkYellow1: #ffbb33;\n@mdkRed1: #ff0000;\n\n//// By-Type style: All Pages in the application will now have a yellow background\nPage\n\n{ background-color: @mdkYellow1; }\n//// By-Name style: All Buttons with _Name == \"BlueButton\" will now have this style\n#BlueButton\n\n{ color: @mdkYellow1; background-color: #0000FF; }\n//// By-Class style: These style classes can be referenced from rules and set using ClientAPI setStyle function\n\n.MyButton\n\n{ color: @mdkYellow1; background-color: @mdkRed1; }\n*/\n\n@ledesmaBlue: #2f4c92;\n@ledesmaWhite: #f5f6f7;\n\nMDKPage {\n    background-color: @ledesmaWhite;\n}\n\nActionBar {\n    background-color: @ledesmaBlue;\n}\n\nActionBarTitle {\n    color: @ledesmaWhite; \n    font-weight: 600;\n    font-style: normal;\n}\n\n.MainButton {\n    color: @ledesmaWhite;\n    background-color: @ledesmaBlue;\n}\n\n.Icon {\n    color: @ledesmaWhite;\n}"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -959,7 +1075,25 @@ var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../css-loader/dist/runtime/api.js */ "../../../../css-loader/dist/runtime/api.js");
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `.ns-light MDKPage {
+	background-color: #f5f6f7;
+}
+.ns-light ActionBar {
+	background-color: #2f4c92;
+}
+.ns-light ActionBarTitle {
+	color: #f5f6f7;
+	font-weight: 600;
+	font-style: normal;
+}
+.ns-light .MainButton {
+	color: #f5f6f7;
+	background-color: #2f4c92;
+}
+.ns-light .Icon {
+	color: #f5f6f7;
+}
+`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.light.css"],"names":[],"mappings":"AAAA;CACC,yBAAyB;AAC1B;AACA;CACC,yBAAyB;AAC1B;AACA;CACC,cAAc;CACd,gBAAgB;CAChB,kBAAkB;AACnB;AACA;CACC,cAAc;CACd,yBAAyB;AAC1B;AACA;CACC,cAAc;AACf","sourcesContent":[".ns-light MDKPage {\n\tbackground-color: #f5f6f7;\n}\n.ns-light ActionBar {\n\tbackground-color: #2f4c92;\n}\n.ns-light ActionBarTitle {\n\tcolor: #f5f6f7;\n\tfont-weight: 600;\n\tfont-style: normal;\n}\n.ns-light .MainButton {\n\tcolor: #f5f6f7;\n\tbackground-color: #2f4c92;\n}\n.ns-light .Icon {\n\tcolor: #f5f6f7;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -977,7 +1111,19 @@ var ___CSS_LOADER_API_SOURCEMAP_IMPORT___ = __webpack_require__(/*! ../../../../
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../css-loader/dist/runtime/api.js */ "../../../../css-loader/dist/runtime/api.js");
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(___CSS_LOADER_API_SOURCEMAP_IMPORT___);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ``, "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, `@ledesmaBlue: #2f4c92;
+@ledesmaWhite: #f5f6f7;
+ActionBar {
+	background-color: #2f4c92;
+}
+MainButton {
+	font-color: #f5f6f7;
+	background-color: #2f4c92;
+}
+Icon {
+	font-color: #f5f6f7;
+}
+`, "",{"version":3,"sources":["webpack://./build.definitions/AuditoriaMobile/Styles/Styles.light.nss"],"names":[],"mappings":"AAAA,qBAAqB;AACrB,sBAAsB;AACtB;CACC,yBAAyB;AAC1B;AACA;CACC,mBAAmB;CACnB,yBAAyB;AAC1B;AACA;CACC,mBAAmB;AACpB","sourcesContent":["@ledesmaBlue: #2f4c92;\n@ledesmaWhite: #f5f6f7;\nActionBar {\n\tbackground-color: #2f4c92;\n}\nMainButton {\n\tfont-color: #f5f6f7;\n\tbackground-color: #2f4c92;\n}\nIcon {\n\tfont-color: #f5f6f7;\n}\n"],"sourceRoot":""}]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -1141,7 +1287,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":true,"_Type
   \***********************************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Controls":[{"_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCDescripcion","IsVisible":true,"Separator":true,"Caption":"Descripción","Enabled":true,"IsEditable":true},{"_Type":"Control.Type.FormCell.ListPicker","_Name":"FCTipoAuditoriaId","IsVisible":true,"Separator":true,"AllowMultipleSelection":false,"AllowEmptySelection":false,"Caption":"Seleccionar un tipo de auditoría","DataPaging":{"ShowLoadingIndicator":false,"PageSize":50},"IsSelectedSectionEnabled":false,"AllowDefaultValueIfOneItem":false,"IsEditable":true,"Search":{"Enabled":true,"Placeholder":"Filtrar tipos de auditoría"},"PickerItems":{"Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"TipoAuditoria","ReadLink":"{@odata.readLink}"},"ObjectCell":{"AvatarStack":{"Avatars":[{"Image":"sap-icon://thing-type"}],"BadgeImage":"sap-icon://cursor-arrow","ImageHasBorder":false,"ImageIsCircular":false},"Description":"{ID}","DisplayDescriptionInMobile":true,"Title":"{DESCRIPCION}","Visible":true},"ReturnValue":"{ID}"}},{"Value":false,"_Type":"Control.Type.FormCell.Switch","_Name":"FCActivo","IsVisible":true,"Separator":true,"Caption":"Activo","IsEditable":true}],"Layout":{"NumberOfColumns":1},"Visible":true,"EmptySection":{"FooterVisible":false},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0"}]}],"_Type":"Page","_Name":"Auditoria_Create","Caption":"Crear auditoría","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICancel","Caption":"Item","SystemItem":"Cancel","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"},{"_Name":"ABISave","Caption":"Item","SystemItem":"Save","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/Auditoria_CreateEntity.action"}],"_Name":"ActionBar1"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Controls":[{"_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCDescripcion","IsVisible":true,"Separator":true,"Caption":"Descripción","Enabled":true,"IsEditable":true},{"_Type":"Control.Type.FormCell.ListPicker","_Name":"FCTipoAuditoriaId","IsVisible":true,"Separator":true,"AllowMultipleSelection":false,"AllowEmptySelection":false,"Caption":"Seleccionar un tipo de auditoría","DataPaging":{"ShowLoadingIndicator":false,"PageSize":50},"IsSelectedSectionEnabled":false,"AllowDefaultValueIfOneItem":false,"IsEditable":true,"Search":{"Enabled":true,"Placeholder":"Filtrar tipos de auditoría"},"PickerItems":{"Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"TipoAuditoria","ReadLink":"{@odata.readLink}"},"ObjectCell":{"AvatarStack":{"Avatars":[{"Image":"sap-icon://thing-type"}],"BadgeImage":"sap-icon://cursor-arrow","ImageHasBorder":false,"ImageIsCircular":false},"Description":"{ID}","DisplayDescriptionInMobile":true,"Title":"{DESCRIPCION}","Visible":true},"ReturnValue":"{ID}"}},{"Value":false,"_Type":"Control.Type.FormCell.Switch","_Name":"FCActivo","IsVisible":true,"Separator":true,"Caption":"Activo","IsEditable":true}],"Layout":{"NumberOfColumns":1},"Visible":true,"EmptySection":{"FooterVisible":false},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0"}]}],"_Type":"Page","_Name":"Auditoria_Create","Caption":"Crear auditoría","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICancel","Caption":"Item","SystemItem":"Cancel","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"},{"_Name":"ABISave","Caption":"Item","SystemItem":"Save","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/Auditoria_CreateEntity.action"}],"_Name":"ActionBar1"}}
 
 /***/ }),
 
@@ -1151,7 +1297,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Typ
   \***********************************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"ObjectHeader":{"Subhead":"Subtítulo","Footnote":"Nota","Description":"Descripción","StatusText":"/AuditoriaMobile/Rules/FormatActivo.rule.js","SubstatusText":"Subestado","DetailImage":"sap-icon://appointment","DetailImageIsCircular":false,"BodyText":"Cuerpo","HeadlineText":"{DESCRIPCION}","StatusPosition":"Stacked","StatusImagePosition":"Leading","SubstatusImagePosition":"Leading"},"_Type":"Section.Type.ObjectHeader","_Name":"SectionObjectHeader0","Visible":true},{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"KeyAndValues":[{"Value":"{ID}","_Name":"KeyValue1","KeyName":"ID","Visible":true},{"Value":"{DESCRIPCION}","_Name":"KeyValue0","KeyName":"Descripción","Visible":true},{"Value":"{TIPOAUDITORIA/DESCRIPCION}","_Name":"KeyValue2","KeyName":"Tipo de auditoría","Visible":true}],"MaxItemCount":1,"_Type":"Section.Type.KeyValue","_Name":"SectionKeyValue0","Visible":true,"EmptySection":{"FooterVisible":false},"Layout":{"NumberOfColumns":2}}]}],"DesignTimeTarget":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"Auditoria","QueryOptions":"$expand=TIPOAUDITORIA"},"_Type":"Page","_Name":"Auditoria_Detail","Caption":"Detalles","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ActionBarItem1","Caption":"Item","SystemItem":"Trash","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Rules/Auditoria_DeleteConfirmation.js"},{"_Name":"ActionBarItem0","Caption":"Item","SystemItem":"Edit","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Edit.action"}],"_Name":"ActionBar1"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"ObjectHeader":{"Subhead":"Subtítulo","Footnote":"Nota","Description":"Descripción","StatusText":"/AuditoriaMobile/Rules/FormatActivo.rule.js","SubstatusText":"Subestado","DetailImage":"sap-icon://appointment","DetailImageIsCircular":false,"BodyText":"Cuerpo","HeadlineText":"{DESCRIPCION}","StatusPosition":"Stacked","StatusImagePosition":"Leading","SubstatusImagePosition":"Leading"},"_Type":"Section.Type.ObjectHeader","_Name":"SectionObjectHeader0","Visible":true},{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"KeyAndValues":[{"Value":"{ID}","_Name":"KeyValue1","KeyName":"ID","Visible":true},{"Value":"{DESCRIPCION}","_Name":"KeyValue0","KeyName":"Descripción","Visible":true},{"Value":"{TIPOAUDITORIA/DESCRIPCION}","_Name":"KeyValue2","KeyName":"Tipo de auditoría","Visible":true}],"MaxItemCount":1,"_Type":"Section.Type.KeyValue","_Name":"SectionKeyValue0","Visible":true,"EmptySection":{"FooterVisible":false},"Layout":{"NumberOfColumns":2}}]}],"DesignTimeTarget":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"Auditoria","QueryOptions":"$expand=TIPOAUDITORIA"},"_Type":"Page","_Name":"Auditoria_Detail","Caption":"Detalles","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ActionBarItem1","Caption":"Item","SystemItem":"Trash","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Rules/Auditoria_DeleteConfirmation.js"},{"_Name":"ActionBarItem0","Caption":"Item","SystemItem":"Edit","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Edit.action"}],"_Name":"ActionBar1"}}
 
 /***/ }),
 
@@ -1161,7 +1307,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Typ
   \*********************************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Controls":[{"Value":"{Auditoria/ID}","_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCID","IsVisible":true,"Separator":true,"Caption":"ID","PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":false},{"Value":"{Auditoria/DESCRIPCION}","_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCDescripcion","IsVisible":true,"Separator":true,"Caption":"Descripción","PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":true},{"Value":["{Auditoria/TIPOAUDITORIA_ID}"],"_Type":"Control.Type.FormCell.ListPicker","_Name":"FCTipoAuditoriaId","IsVisible":true,"Separator":true,"Styles":{"Caption":"Hola"},"AllowMultipleSelection":false,"AllowEmptySelection":false,"Caption":"Seleccionar un tipo de auditoría","DataPaging":{"ShowLoadingIndicator":false,"PageSize":50},"IsSelectedSectionEnabled":false,"AllowDefaultValueIfOneItem":false,"IsEditable":true,"Search":{"Enabled":true,"Placeholder":"Filtrar tipos de auditoría"},"PickerItems":{"Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"TipoAuditoria","ReadLink":"{@odata.readLink}"},"ObjectCell":{"AvatarStack":{"Avatars":[{"Image":"sap-icon://thing-type"}],"BadgeImage":"sap-icon://cursor-arrow","ImageHasBorder":false,"ImageIsCircular":false},"Description":"{ID}","DisplayDescriptionInMobile":true,"PreserveIconStackSpacing":true,"Title":"{DESCRIPCION}","Visible":true},"ReturnValue":"{ID}"}},{"Value":"{Auditoria/Activo}","_Type":"Control.Type.FormCell.Switch","_Name":"FCActivo","IsVisible":true,"Separator":true,"Caption":"Activo","IsEditable":true}],"Layout":{"NumberOfColumns":1},"Visible":true,"EmptySection":{"FooterVisible":false},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0"}]}],"_Type":"Page","_Name":"Auditoria_Edit","Caption":"Actualizar auditoría","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICancel","Caption":"Item","SystemItem":"Cancel","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"},{"_Name":"ABISave","Caption":"Item","SystemItem":"Save","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/Auditoria_UpdateEntity.action"}],"_Name":"ActionBar1"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Controls":[{"Value":"{Auditoria/ID}","_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCID","IsVisible":true,"Separator":true,"Caption":"ID","PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":false},{"Value":"{Auditoria/DESCRIPCION}","_Type":"Control.Type.FormCell.SimpleProperty","_Name":"FCDescripcion","IsVisible":true,"Separator":true,"Caption":"Descripción","PlaceHolder":"PlaceHolder","Enabled":true,"IsEditable":true},{"Value":["{Auditoria/TIPOAUDITORIA_ID}"],"_Type":"Control.Type.FormCell.ListPicker","_Name":"FCTipoAuditoriaId","IsVisible":true,"Separator":true,"AllowMultipleSelection":false,"AllowEmptySelection":false,"Caption":"Seleccionar un tipo de auditoría","DataPaging":{"ShowLoadingIndicator":false,"PageSize":50},"IsSelectedSectionEnabled":false,"AllowDefaultValueIfOneItem":false,"IsEditable":true,"Search":{"Enabled":true,"Placeholder":"Filtrar tipos de auditoría"},"PickerItems":{"Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"TipoAuditoria","ReadLink":"{@odata.readLink}"},"ObjectCell":{"AvatarStack":{"Avatars":[{"Image":"sap-icon://thing-type"}],"BadgeImage":"sap-icon://cursor-arrow","ImageHasBorder":false,"ImageIsCircular":false},"Description":"{ID}","DisplayDescriptionInMobile":true,"PreserveIconStackSpacing":true,"Title":"{DESCRIPCION}","Visible":true},"ReturnValue":"{ID}"}},{"Value":"{Auditoria/Activo}","_Type":"Control.Type.FormCell.Switch","_Name":"FCActivo","IsVisible":true,"Separator":true,"Caption":"Activo","IsEditable":true}],"Layout":{"NumberOfColumns":1},"Visible":true,"EmptySection":{"FooterVisible":false},"_Type":"Section.Type.FormCell","_Name":"SectionFormCell0"}]}],"_Type":"Page","_Name":"Auditoria_Edit","Caption":"Actualizar auditoría","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICancel","Caption":"Item","SystemItem":"Cancel","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"},{"_Name":"ABISave","Caption":"Item","SystemItem":"Save","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/Auditoria_UpdateEntity.action"}],"_Name":"ActionBar1"}}
 
 /***/ }),
 
@@ -1171,7 +1317,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Typ
   \*********************************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"_Type":"Section.Type.ContactCell","Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"Auditoria","QueryOptions":"$expand=TIPOAUDITORIA"},"_Name":"SectionContactCell0","Visible":true,"EmptySection":{"FooterVisible":false},"ContactCell":{"Visible":true,"ContextMenu":{"PerformFirstActionWithFullSwipe":true},"DetailImage":"","Headline":"{DESCRIPCION}","Subheadline":"{ID}","Description":"{DESCRIPCION}","OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Detail.action"},"DataPaging":{"ShowLoadingIndicator":false,"PageSize":50}}]}],"_Type":"Page","_Name":"Auditoria_List","Caption":"Auditorías","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICreate","Caption":"Item","SystemItem":"Add","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Create.action"}],"_Name":"ActionBar1"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"_Type":"Section.Type.ContactCell","Target":{"Service":"/AuditoriaMobile/Services/Auditoria.service","EntitySet":"Auditoria","QueryOptions":"$expand=TIPOAUDITORIA"},"_Name":"SectionContactCell0","Visible":true,"EmptySection":{"FooterVisible":false},"ContactCell":{"Visible":true,"ContextMenu":{"PerformFirstActionWithFullSwipe":true},"DetailImage":"","Headline":"{DESCRIPCION}","Subheadline":"{ID}","Description":"{DESCRIPCION}","OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Detail.action"},"DataPaging":{"ShowLoadingIndicator":false,"PageSize":50}}]}],"_Type":"Page","_Name":"Auditoria_List","Caption":"Auditorías","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ABICreate","Caption":"Item","SystemItem":"Add","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Create.action"}],"_Name":"ActionBar1"}}
 
 /***/ }),
 
@@ -1191,7 +1337,7 @@ module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Typ
   \***************************************************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable","Sections":[{"KeyAndValues":[{"Value":"{Message}","_Name":"KeyValue0","KeyName":"Error","Visible":true},{"Value":"{RequestBody}","_Name":"KeyValue1","KeyName":"Request Body","Visible":true},{"Value":"{RequestURL}","_Name":"KeyValue2","KeyName":"Request URL","Visible":true},{"Value":"{HTTPStatusCode}","_Name":"KeyValue3","KeyName":"HTTP Status Code","Visible":true},{"Value":"{RequestMethod}","_Name":"KeyValue4","KeyName":"Request Method","Visible":true}],"MaxItemCount":1,"_Type":"Section.Type.KeyValue","_Name":"SectionKeyValue0","Visible":true,"EmptySection":{"FooterVisible":false},"Layout":{"NumberOfColumns":1}}]}],"_Type":"Page","_Name":"ErrorArchive_Detail","Caption":"Details","PrefersLargeCaption":true}
+module.exports = {"Controls":[{"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable","Sections":[{"_Type":"Section.Type.ObjectTable","Target":"{AffectedEntity}","_Name":"SectionObjectTable0","Header":{"_Type":"SectionCommon.Type.Header","_Name":"SectionCommonTypeHeader0","AccessoryType":"None","UseTopPadding":true,"Caption":"Entidad afectada: {#Page:-Current/AffectedEntity/@odata.type}"},"Visible":true,"EmptySection":{"FooterVisible":false},"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"ObjectCell":{"Title":"Editar entidad afectada","Subhead":"{@odata.id}","DisplayDescriptionInMobile":true,"PreserveIconStackSpacing":false,"AccessoryType":"DisclosureIndicator","Tags":[],"AvatarStack":{"Avatars":[],"ImageIsCircular":true,"ImageHasBorder":false},"AvatarGrid":{"Avatars":[],"ImageIsCircular":true},"OnPress":"/AuditoriaMobile/Rules/ErrorArchive/ErrorArchive_DecideWhichEditPage.js","Selected":false,"ContextMenu":{"Items":[],"PerformFirstActionWithFullSwipe":true,"LeadingItems":[],"TrailingItems":[]}},"DataPaging":{"ShowLoadingIndicator":false,"PageSize":50},"HighlightSelectedItem":false,"Selection":{"ExitOnLastDeselect":true,"LongPressToEnable":"None","Mode":"None"}},{"KeyAndValues":[{"Value":"{Message}","_Name":"KeyValue0","KeyName":"Error","Visible":true},{"Value":"{RequestBody}","_Name":"KeyValue1","KeyName":"Request Body","Visible":true},{"Value":"{RequestURL}","_Name":"KeyValue2","KeyName":"Request URL","Visible":true},{"Value":"{HTTPStatusCode}","_Name":"KeyValue3","KeyName":"HTTP Status Code","Visible":true},{"Value":"{RequestMethod}","_Name":"KeyValue4","KeyName":"Request Method","Visible":true}],"MaxItemCount":1,"_Type":"Section.Type.KeyValue","_Name":"SectionKeyValue0","Visible":true,"EmptySection":{"FooterVisible":false},"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Layout":{"NumberOfColumns":1}}],"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"}}],"_Type":"Page","_Name":"ErrorArchive_Detail","Caption":"Details","PrefersLargeCaption":true}
 
 /***/ }),
 
@@ -1211,7 +1357,7 @@ module.exports = {"Controls":[{"_Type":"Control.Type.SectionedTable","_Name":"Se
   \***********************************************************/
 /***/ ((module) => {
 
-module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Layout":{"LayoutType":"Vertical","HorizontalAlignment":"Leading"},"_Type":"Section.Type.ButtonTable","_Name":"SectionButtonTable0","Visible":true,"EmptySection":{"FooterVisible":false},"Buttons":[{"_Type":"ButtonTable.Type.Button","_Name":"ButtonTableTypeButton0","Title":"Auditorías (Data Table)","Alignment":"Center","ButtonType":"Text","Semantic":"Tint","Image":"sap-icon://search","ImagePosition":"Leading","FullWidth":false,"Visible":true,"Enabled":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Table.action"},{"_Type":"ButtonTable.Type.Button","_Name":"ButtonTableTypeButton1","Title":"Auditorías (List)","Alignment":"Center","ButtonType":"Text","Semantic":"Tint","Image":"sap-icon://search","ImagePosition":"Leading","FullWidth":false,"Visible":true,"Enabled":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_List.action"}]}]}],"_Type":"Page","_Name":"Main","Caption":"Main","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ActionBarItem0","Caption":"User Menu","Icon":"sap-icon://customer","Position":"Right","IsIconCircular":false,"Visible":true,"OnPress":"/AuditoriaMobile/Actions/Application/UserMenuPopover.action"}],"_Name":"ActionBar1"}}
+module.exports = {"Controls":[{"FilterFeedbackBar":{"ShowAllFilters":false,"_Type":"Control.Type.FilterFeedbackBar"},"_Type":"Control.Type.SectionedTable","_Name":"SectionedTable0","Sections":[{"Separators":{"TopSectionSeparator":false,"BottomSectionSeparator":true,"HeaderSeparator":true,"FooterSeparator":true,"ControlSeparator":true},"Layout":{"LayoutType":"Vertical","HorizontalAlignment":"Leading"},"_Type":"Section.Type.ButtonTable","_Name":"SectionButtonTable0","Visible":true,"EmptySection":{"FooterVisible":false},"Buttons":[{"Styles":{"Button":"MainButton"},"_Type":"ButtonTable.Type.Button","_Name":"ButtonTableTypeButton0","Title":"Auditorías (Data Table)","Alignment":"Center","ButtonType":"Text","Semantic":"Tint","Image":"sap-icon://search","ImagePosition":"Leading","FullWidth":true,"Visible":true,"Enabled":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_Table.action"},{"Styles":{"Button":"MainButton"},"_Type":"ButtonTable.Type.Button","_Name":"ButtonTableTypeButton1","Title":"Auditorías (List)","Alignment":"Center","ButtonType":"Text","Semantic":"Tint","Image":"sap-icon://search","ImagePosition":"Leading","FullWidth":true,"Visible":true,"Enabled":true,"OnPress":"/AuditoriaMobile/Actions/NavToAuditoria_List.action"}]}]}],"_Type":"Page","_Name":"Main","Caption":"LEDESMA: Auditoria","PrefersLargeCaption":true,"ActionBar":{"Items":[{"_Name":"ActionBarItem0","Caption":"User Menu","Icon":"sap-icon://customer","Position":"Right","IsIconCircular":false,"Visible":true,"Style":"Icon","OnPress":"/AuditoriaMobile/Actions/Application/UserMenuPopover.action"}],"_Name":"ActionBar1"}}
 
 /***/ }),
 
@@ -1545,6 +1691,16 @@ module.exports = {"_Type":"Action.Type.BannerMessage","Message":"Upload failed!"
 
 /***/ }),
 
+/***/ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_UnknownAffectedEntity.action":
+/*!**********************************************************************************************************!*\
+  !*** ./build.definitions/AuditoriaMobile/Actions/ErrorArchive/ErrorArchive_UnknownAffectedEntity.action ***!
+  \**********************************************************************************************************/
+/***/ ((module) => {
+
+module.exports = {"_Type":"Action.Type.ToastMessage","ActionResult":{"_Name":"ErrorArchive_UnknownAffectedEntity"},"Message":"La entidad afectada {AffectedEntity/@odata.id} aún no tiene controlador.","Duration":4,"Animated":true}
+
+/***/ }),
+
 /***/ "./build.definitions/AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_Detail.action":
 /*!************************************************************************************************!*\
   !*** ./build.definitions/AuditoriaMobile/Actions/ErrorArchive/NavToErrorArchive_Detail.action ***!
@@ -1751,7 +1907,7 @@ module.exports = {"Value":"1-800-677-7271","_Type":"String"}
   \**********************************************************************/
 /***/ ((module) => {
 
-module.exports = {"DestinationName":"Auditoria","OfflineEnabled":true,"SourceType":"Mobile"}
+module.exports = {"DestinationName":"Auditoria","OfflineEnabled":true,"SourceType":"Mobile","RestService":false}
 
 /***/ }),
 
@@ -1814,7 +1970,7 @@ __webpack_require__.d(exports, {
 /***/ ((module) => {
 
 "use strict";
-module.exports = {};
+module.exports = JSON.parse('{"ActionBar":{"background-color":"#2f4c92"},"MainButton":{"font-color":"#f5f6f7","background-color":"#2f4c92"},"Icon":{"font-color":"#f5f6f7"}}');
 
 /***/ }),
 

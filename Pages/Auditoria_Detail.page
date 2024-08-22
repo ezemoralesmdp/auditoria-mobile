@@ -87,6 +87,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Rules/Auditoria_DeleteConfirmation.js"
 			},
 			{
@@ -96,6 +97,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/NavToAuditoria_Edit.action"
 			}
 		],

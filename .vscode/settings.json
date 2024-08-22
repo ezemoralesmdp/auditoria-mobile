@@ -6,6 +6,7 @@
         "right": {
             "visible": true,
             "width": 432.0137939453125
-        }
+        },
+        "device": "tablet"
     }
 }

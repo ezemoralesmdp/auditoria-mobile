@@ -59,6 +59,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/NavToAuditoria_Create.action"
 			}
 		],

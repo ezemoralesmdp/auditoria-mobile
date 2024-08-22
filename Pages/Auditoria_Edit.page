@@ -47,9 +47,6 @@
 							"_Name": "FCTipoAuditoriaId",
 							"IsVisible": true,
 							"Separator": true,
-							"Styles": {
-								"Caption": "Hola"
-							},
 							"AllowMultipleSelection": false,
 							"AllowEmptySelection": false,
 							"Caption": "Seleccionar un tipo de auditoría",
@@ -126,6 +123,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"
 			},
 			{
@@ -135,6 +133,7 @@
 				"Position": "Right",
 				"IsIconCircular": false,
 				"Visible": true,
+				"Style": "Icon",
 				"OnPress": "/AuditoriaMobile/Actions/Auditoria_UpdateEntity.action"
 			}
 		],

@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.ToastMessage",
+	"ActionResult": {
+		"_Name": "ErrorArchive_UnknownAffectedEntity"
+	},
+	"Message": "La entidad afectada {AffectedEntity/@odata.id} aún no tiene controlador.",
+	"Duration": 4,
+	"Animated": true
+}

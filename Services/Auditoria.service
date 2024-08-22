@@ -1,5 +1,6 @@
 {
 	"DestinationName": "Auditoria",
 	"OfflineEnabled": true,
-	"SourceType": "Mobile"
+	"SourceType": "Mobile",
+	"RestService": false
 }
