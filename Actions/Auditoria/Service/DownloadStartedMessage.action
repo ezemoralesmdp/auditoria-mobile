@@ -1,7 +1,7 @@
 {
-    "Message": "Download in progress...",
-    "CompletionMessage": "Download Successful",
-    "CompletionTimeout": 7,
-    "OnSuccess": "/AuditoriaMobile/Actions/Auditoria/Service/DownloadOffline.action",
-    "_Type": "Action.Type.ProgressBanner"
+	"_Type": "Action.Type.ProgressBanner",
+	"OnSuccess": "/AuditoriaMobile/Actions/Auditoria/Service/DownloadOffline.action",
+	"Message": "Descarga en progreso...",
+	"CompletionMessage": "Descargar exitosa",
+	"CompletionTimeout": 7
 }

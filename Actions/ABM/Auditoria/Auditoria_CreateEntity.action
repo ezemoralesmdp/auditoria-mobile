@@ -1,0 +1,17 @@
+{
+	"_Type": "Action.Type.ODataService.CreateEntity",
+	"ActionResult": {
+		"_Name": "Auditoria_CreateEntity"
+	},
+	"OnFailure": "/AuditoriaMobile/Actions/Messages/Auditoria/CreateAuditoriaEntityFailureMessage.action",
+	"OnSuccess": "/AuditoriaMobile/Actions/CloseModalPage_Complete.action",
+	"Target": {
+		"Service": "/AuditoriaMobile/Services/Auditoria.service",
+		"EntitySet": "Auditoria"
+	},
+	"Properties": {
+		"DESCRIPCION": "#Page:Auditoria_Create/#Control:FCDescripcion/#Value",
+		"ACTIVO": "#Control:FCActivo/#Value",
+		"TIPOAUDITORIA_ID": "#Control:FCTipoAuditoriaId/#SelectedValue"
+	}
+}

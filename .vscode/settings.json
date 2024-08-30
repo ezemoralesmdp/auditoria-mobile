@@ -5,8 +5,10 @@
         },
         "right": {
             "visible": true,
-            "width": 432.0137939453125
-        },
-        "device": "tablet"
+            "width": 456.00689697265625
+        }
+    },
+    "mdk.i18n": {
+        "displayLanguages": "i18n"
     }
 }

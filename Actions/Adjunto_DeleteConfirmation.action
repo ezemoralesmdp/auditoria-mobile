@@ -1,0 +1,10 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "Adjunto_DeleteConfirmation"
+	},
+	"Message": "¿Esta seguro de eliminar el adjunto?",
+	"Title": "Confirmar eliminación",
+	"OKCaption": "OK",
+	"CancelCaption": "Cancelar"
+}

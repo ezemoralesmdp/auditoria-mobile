@@ -1,0 +1,10 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "Auditoria_DeleteConfirmation"
+	},
+	"Message": "¿Esta seguro de eliminar {Auditoria/DESCRIPCION}?",
+	"Title": "Confirmar eliminación",
+	"OKCaption": "Aceptar",
+	"CancelCaption": "Cancelar"
+}

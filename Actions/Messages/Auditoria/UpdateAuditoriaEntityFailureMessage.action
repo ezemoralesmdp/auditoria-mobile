@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "UpdateAuditoriaEntityFailureMessage"
+	},
+	"Message": "No se pudieron guardar las actualizaciones sobre {Auditoria/DESCRIPCION} - {#ActionResults:Auditoria_UpdateEntity/error}",
+	"Title": "Actualizar {Auditoria/DESCRIPCION}",
+	"OKCaption": "Aceptar"
+}

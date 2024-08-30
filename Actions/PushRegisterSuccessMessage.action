@@ -1,0 +1,10 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "PushRegisterSuccessMessage"
+	},
+	"OnSuccess": "/AuditoriaMobile/Rules/Service/Initialize.js",
+	"Message": "Las actualizaciones se aplicaron con éxito.",
+	"Title": "Actualizado",
+	"OKCaption": "Aceptar"
+}

@@ -26,7 +26,7 @@
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="DESCRIPCION" Type="Edm.String" MaxLength="150" Nullable="false"/>
-                <Property Name="Activo" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="ACTIVO" Type="Edm.Boolean" DefaultValue="true"/>
                 <NavigationProperty Name="TOAUDITORIA" Type="Collection(InfraestructuraService.Auditoria)" Partner="TIPOAUDITORIA">
                     <OnDelete Action="Cascade"/>
                 </NavigationProperty>
@@ -37,7 +37,7 @@
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="DESCRIPCION" Type="Edm.String" MaxLength="150"/>
-                <Property Name="Activo" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="ACTIVO" Type="Edm.Boolean" DefaultValue="true"/>
                 <NavigationProperty Name="TIPOAUDITORIA" Type="InfraestructuraService.TipoAuditoria" Partner="TOAUDITORIA">
                     <ReferentialConstraint Property="TIPOAUDITORIA_ID" ReferencedProperty="ID"/>
                 </NavigationProperty>
@@ -49,7 +49,7 @@
                 </Key>
                 <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
                 <Property Name="TITULO" Type="Edm.String" MaxLength="50" Nullable="false"/>
-                <Property Name="Activo" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="ACTIVO" Type="Edm.Boolean" DefaultValue="true"/>
             </EntityType>
             <Annotations Target="InfraestructuraService.TipoAuditoria">
                 <Annotation Term="UI.FieldGroup" Qualifier="GeneratedGroup">
@@ -86,11 +86,17 @@
             <Annotations Target="InfraestructuraService.TipoAuditoria/DESCRIPCION">
                 <Annotation Term="Common.Label" String="DESCRIPCION"/>
             </Annotations>
+            <Annotations Target="InfraestructuraService.TipoAuditoria/ACTIVO">
+                <Annotation Term="Common.Label" String="ACTIVO"/>
+            </Annotations>
             <Annotations Target="InfraestructuraService.Auditoria/ID">
                 <Annotation Term="Core.ComputedDefaultValue" Bool="true"/>
             </Annotations>
             <Annotations Target="InfraestructuraService.Auditoria/DESCRIPCION">
                 <Annotation Term="Common.Label" String="DESCRIPCION"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Auditoria/ACTIVO">
+                <Annotation Term="Common.Label" String="ACTIVO"/>
             </Annotations>
             <Annotations Target="InfraestructuraService.Auditoria/TIPOAUDITORIA_ID">
                 <Annotation Term="Common.FieldControl" EnumMember="Common.FieldControlType/Mandatory"/>
@@ -100,6 +106,9 @@
             </Annotations>
             <Annotations Target="InfraestructuraService.Recomendacion/TITULO">
                 <Annotation Term="Common.Label" String="TITULO"/>
+            </Annotations>
+            <Annotations Target="InfraestructuraService.Recomendacion/ACTIVO">
+                <Annotation Term="Common.Label" String="ACTIVO"/>
             </Annotations>
         </Schema>
     </edmx:DataServices>

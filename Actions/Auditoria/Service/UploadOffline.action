@@ -1,9 +1,9 @@
 {
-    "Service": "/AuditoriaMobile/Services/Auditoria.service",
-    "_Type": "Action.Type.OfflineOData.Upload",
-    "ActionResult": {
-        "_Name": "sync"
-    },
-    "OnSuccess": "/AuditoriaMobile/Actions/Auditoria/Service/DownloadStartedMessage.action",
-    "OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/SyncFailureMessage.action"
+	"_Type": "Action.Type.OfflineOData.Upload",
+	"ActionResult": {
+		"_Name": "sync"
+	},
+	"OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/SyncFailureMessage.action",
+	"OnSuccess": "/AuditoriaMobile/Actions/Auditoria/Service/DownloadStartedMessage.action",
+	"Service": "/AuditoriaMobile/Services/Auditoria.service"
 }

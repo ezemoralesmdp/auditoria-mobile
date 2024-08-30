@@ -1,0 +1,17 @@
+{
+	"_Type": "Action.Type.ODataService.UpdateEntity",
+	"ActionResult": {
+		"_Name": "TipoAuditoria_UpdateEntity"
+	},
+	"OnFailure": "/AuditoriaMobile/Actions/Messages/TipoAuditoria/UpdateTipoAuditoriaEntityFailureMessage.action",
+	"OnSuccess": "/AuditoriaMobile/Actions/CloseModalPage_Complete.action",
+	"Target": {
+		"Service": "/AuditoriaMobile/Services/Auditoria.service",
+		"EntitySet": "TipoAuditoria",
+		"ReadLink": "{@odata.readLink}"
+	},
+	"Properties": {
+		"DESCRIPCION": "#Control:FCDescripcion/#Value",
+		"ACTIVO": "#Control:FCActivo/#Value"
+	}
+}

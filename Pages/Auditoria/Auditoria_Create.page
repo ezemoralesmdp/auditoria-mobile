@@ -1,0 +1,126 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"Controls": [
+						{
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FCDescripcion",
+							"IsVisible": true,
+							"Separator": true,
+							"Caption": "Descripción",
+							"Enabled": true,
+							"IsEditable": true
+						},
+						{
+							"_Type": "Control.Type.FormCell.ListPicker",
+							"_Name": "FCTipoAuditoriaId",
+							"IsVisible": true,
+							"Separator": true,
+							"AllowMultipleSelection": false,
+							"AllowEmptySelection": false,
+							"Caption": "Seleccionar un tipo de auditoría",
+							"DataPaging": {
+								"ShowLoadingIndicator": false,
+								"PageSize": 50
+							},
+							"IsSelectedSectionEnabled": false,
+							"AllowDefaultValueIfOneItem": false,
+							"IsEditable": true,
+							"Search": {
+								"Enabled": true,
+								"Placeholder": "Filtrar tipos de auditoría"
+							},
+							"PickerItems": {
+								"Target": {
+									"Service": "/AuditoriaMobile/Services/Auditoria.service",
+									"EntitySet": "TipoAuditoria",
+									"ReadLink": "{@odata.readLink}"
+								},
+								"ObjectCell": {
+									"AvatarStack": {
+										"Avatars": [
+											{
+												"Image": "sap-icon://thing-type"
+											}
+										],
+										"BadgeImage": "sap-icon://cursor-arrow",
+										"ImageHasBorder": false,
+										"ImageIsCircular": false
+									},
+									"Description": "{ID}",
+									"DisplayDescriptionInMobile": true,
+									"PreserveIconStackSpacing": true,
+									"Title": "{DESCRIPCION}",
+									"Visible": true
+								},
+								"ReturnValue": "{ID}"
+							}
+						},
+						{
+							"Value": false,
+							"_Type": "Control.Type.FormCell.Switch",
+							"_Name": "FCActivo",
+							"IsVisible": true,
+							"Separator": true,
+							"Caption": "Activo",
+							"IsEditable": true
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 1
+					},
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0"
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "Auditoria_Create",
+	"Caption": "Crear auditoría",
+	"PrefersLargeCaption": true,
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ABICancel",
+				"Caption": "Item",
+				"SystemItem": "Cancel",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"
+			},
+			{
+				"_Name": "ABISave",
+				"Caption": "Item",
+				"SystemItem": "Save",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Actions/ABM/Auditoria/Auditoria_CreateEntity.action"
+			}
+		],
+		"_Name": "ActionBar1"
+	}
+}

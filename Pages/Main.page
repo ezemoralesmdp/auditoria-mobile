@@ -22,6 +22,13 @@
 					},
 					"_Type": "Section.Type.ButtonTable",
 					"_Name": "SectionButtonTable0",
+					"Header": {
+						"_Type": "SectionCommon.Type.Header",
+						"_Name": "SectionCommonTypeHeader0",
+						"AccessoryType": "None",
+						"UseTopPadding": false,
+						"Caption": "Acciones"
+					},
 					"Visible": true,
 					"EmptySection": {
 						"FooterVisible": false
@@ -42,7 +49,7 @@
 							"FullWidth": true,
 							"Visible": true,
 							"Enabled": true,
-							"OnPress": "/AuditoriaMobile/Actions/NavToAuditoria_Table.action"
+							"OnPress": "/AuditoriaMobile/Actions/NavTo/Auditoria/NavToAuditoria_Table.action"
 						},
 						{
 							"Styles": {
@@ -50,18 +57,170 @@
 							},
 							"_Type": "ButtonTable.Type.Button",
 							"_Name": "ButtonTableTypeButton1",
-							"Title": "Auditorías (List)",
+							"Title": "Auditorías",
 							"Alignment": "Center",
 							"ButtonType": "Text",
 							"Semantic": "Tint",
-							"Image": "sap-icon://search",
+							"Image": "sap-icon://list",
 							"ImagePosition": "Leading",
 							"FullWidth": true,
 							"Visible": true,
 							"Enabled": true,
-							"OnPress": "/AuditoriaMobile/Actions/NavToAuditoria_List.action"
+							"OnPress": "/AuditoriaMobile/Actions/NavTo/Auditoria/NavToAuditoria_List.action"
+						},
+						{
+							"_Type": "ButtonTable.Type.Button",
+							"_Name": "ButtonTableTypeButton5",
+							"Title": "Tipos de auditoría",
+							"Alignment": "Center",
+							"ButtonType": "Text",
+							"Semantic": "Tint",
+							"Image": "sap-icon://list",
+							"ImagePosition": "Leading",
+							"FullWidth": true,
+							"Visible": true,
+							"Enabled": true,
+							"Styles": {
+								"Button": "MainButton"
+							},
+							"OnPress": "/AuditoriaMobile/Actions/NavTo/TipoAuditoria/NavToTipoAuditoria_List.action"
 						}
 					]
+				},
+				{
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"Layout": {
+						"LayoutType": "Vertical",
+						"HorizontalAlignment": "Leading"
+					},
+					"_Type": "Section.Type.ButtonTable",
+					"_Name": "SectionButtonTable1",
+					"Header": {
+						"_Type": "SectionCommon.Type.Header",
+						"_Name": "SectionCommonTypeHeader1",
+						"AccessoryType": "None",
+						"UseTopPadding": false,
+						"Caption": "Otro"
+					},
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Buttons": [
+						{
+							"Styles": {
+								"Button": "MainButton"
+							},
+							"_Type": "ButtonTable.Type.Button",
+							"_Name": "ButtonTableTypeButton3",
+							"Title": "Abrir SAP Mobile Start",
+							"Alignment": "Center",
+							"ButtonType": "Text",
+							"Semantic": "Tint",
+							"Image": "sap-icon://open-command-field",
+							"ImagePosition": "Leading",
+							"FullWidth": true,
+							"Visible": true,
+							"Enabled": true,
+							"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/SAP/OpenSAPMobileStart.js"
+						},
+						{
+							"Styles": {
+								"Button": "MainButton"
+							},
+							"_Type": "ButtonTable.Type.Button",
+							"_Name": "ButtonTableTypeButton4",
+							"Title": "Ir al sitio de sap.com",
+							"Alignment": "Center",
+							"ButtonType": "Text",
+							"Semantic": "Tint",
+							"Image": "sap-icon://open-command-field",
+							"ImagePosition": "Leading",
+							"FullWidth": true,
+							"Visible": true,
+							"Enabled": true,
+							"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/SAP/OpenSAPcom.js"
+						}
+					]
+				},
+				{
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"Footer": {
+						"Styles": {
+							"Footer": "MainFooter"
+						},
+						"_Type": "SectionCommon.Type.Footer",
+						"_Name": "SectionCommonTypeFooter0",
+						"Caption": "Aplicación de prueba",
+						"FooterStyle": "Help",
+						"Visible": true,
+						"UseBottomPadding": true
+					},
+					"_Type": "Section.Type.ObjectCardCollection",
+					"_Name": "SectionObjectCardCollection0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Cards": [
+						{
+							"_Type": "Control.Type.ObjectCard",
+							"_Name": "ObjectCard0",
+							"Visible": true,
+							"Title": "Ledesma",
+							"Subhead": "Sitios de interés",
+							"Footnote": "Seleccione para navegar",
+							"DetailImage": "sap-icon://world",
+							"DetailImageIsCircular": false,
+							"PrimaryAction": {
+								"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/Ledesma/OpenLedesmaOficial.js",
+								"Style": "MainButton",
+								"Title": "Sitio oficial",
+								"Visible": true
+							},
+							"SecondaryAction": {
+								"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/Ledesma/OpenLedesmaContacto.js",
+								"Title": "Contacto",
+								"Visible": true
+							}
+						},
+						{
+							"_Type": "Control.Type.ObjectCard",
+							"_Name": "ObjectCard1",
+							"Visible": true,
+							"Title": "EMMSA IT Services",
+							"Subhead": "Consultora IT",
+							"Footnote": "Seleccione para navegar",
+							"DetailImage": "sap-icon://world",
+							"DetailImageIsCircular": false,
+							"PrimaryAction": {
+								"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/Emmsa/OpenEmmsaOficial.js",
+								"Style": "MainButton",
+								"Title": "Sitio oficial",
+								"Visible": true
+							},
+							"SecondaryAction": {
+								"OnPress": "/AuditoriaMobile/Rules/NavToExternalSites/Emmsa/OpenEmmsaContacto.js",
+								"Title": "Contacto",
+								"Visible": true
+							}
+						}
+					],
+					"Layout": {
+						"LayoutType": "HorizontalScroll"
+					}
 				}
 			]
 		}

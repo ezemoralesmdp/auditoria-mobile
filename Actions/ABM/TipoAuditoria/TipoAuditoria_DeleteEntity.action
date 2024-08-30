@@ -1,0 +1,13 @@
+{
+	"_Type": "Action.Type.ODataService.DeleteEntity",
+	"ActionResult": {
+		"_Name": "TipoAuditoria_DeleteEntity"
+	},
+	"OnFailure": "/AuditoriaMobile/Actions/Messages/TipoAuditoria/DeleteTipoAuditoriaEntityFailureMessage.action",
+	"OnSuccess": "/AuditoriaMobile/Actions/CloseModalPage_Complete.action",
+	"Target": {
+		"Service": "/AuditoriaMobile/Services/Auditoria.service",
+		"EntitySet": "TipoAuditoria",
+		"ReadLink": "{@odata.readLink}"
+	}
+}

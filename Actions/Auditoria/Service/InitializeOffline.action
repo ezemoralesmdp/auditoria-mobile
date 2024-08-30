@@ -1,23 +1,25 @@
 {
-    "Service": "/AuditoriaMobile/Services/Auditoria.service",
-    "DefiningRequests": [{
-            "Name": "Auditoria",
-            "Query": "Auditoria"
-        },
-        {
-            "Name": "Recomendacion",
-            "Query": "Recomendacion"
-        },
-        {
-            "Name": "TipoAuditoria",
-            "Query": "TipoAuditoria"
-        }
-    ],
-    "_Type": "Action.Type.ODataService.Initialize",
-    "ShowActivityIndicator": true,
-    "ActivityIndicatorText": "Downloading...",
-    "ActionResult": {
-        "_Name": "init"
-    },
-    "OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/InitializeOfflineFailureMessage.action"
+	"_Type": "Action.Type.ODataService.Initialize",
+	"ActionResult": {
+		"_Name": "init"
+	},
+	"OnFailure": "/AuditoriaMobile/Actions/Auditoria/Service/InitializeOfflineFailureMessage.action",
+	"ShowActivityIndicator": true,
+	"ActivityIndicatorText": "Downloading...",
+	"Service": "/AuditoriaMobile/Services/Auditoria.service",
+	"DefiningRequests": [
+		{
+			"Name": "Auditoria",
+			"Query": "Auditoria",
+			"AutomaticallyRetrievesStreams": false
+		},
+		{
+			"Name": "Recomendacion",
+			"Query": "Recomendacion"
+		},
+		{
+			"Name": "TipoAuditoria",
+			"Query": "TipoAuditoria"
+		}
+	]
 }

@@ -1,0 +1,83 @@
+{
+	"Controls": [
+		{
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"_Type": "Section.Type.FormCell",
+					"_Name": "SectionFormCell0",
+					"Controls": [
+						{
+							"Value": "{TipoAuditoria/DESCRIPCION}",
+							"_Type": "Control.Type.FormCell.SimpleProperty",
+							"_Name": "FCDescripcion",
+							"IsVisible": true,
+							"Separator": true,
+							"Caption": "Descripción",
+							"PlaceHolder": "PlaceHolder",
+							"Enabled": true,
+							"IsEditable": true
+						},
+						{
+							"Value": "{TipoAuditoria/ACTIVO}",
+							"_Type": "Control.Type.FormCell.Switch",
+							"_Name": "FCActivo",
+							"IsVisible": true,
+							"Separator": true,
+							"Caption": "Caption",
+							"IsEditable": true
+						}
+					],
+					"Layout": {
+						"NumberOfColumns": 1
+					}
+				}
+			],
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			}
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TipoAuditoria_Edit",
+	"Caption": "TipoAuditoria_Edit",
+	"PrefersLargeCaption": true,
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ABICancel",
+				"Caption": "Cancelar",
+				"SystemItem": "Cancel",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Actions/CloseModalPage_Cancel.action"
+			},
+			{
+				"_Name": "ActionBarItem0",
+				"Caption": "Guardar",
+				"SystemItem": "Save",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Actions/ABM/TipoAuditoria/TipoAuditoria_UpdateEntity.action"
+			}
+		],
+		"_Name": "ActionBar1"
+	}
+}

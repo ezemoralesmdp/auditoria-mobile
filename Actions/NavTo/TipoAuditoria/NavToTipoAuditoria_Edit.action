@@ -1,0 +1,8 @@
+{
+	"_Type": "Action.Type.Navigation",
+	"ActionResult": {
+		"_Name": "NavToTipoAuditoria_Edit"
+	},
+	"PageToOpen": "/AuditoriaMobile/Pages/TipoAuditoria/TipoAuditoria_Edit.page",
+	"ModalPage": true
+}

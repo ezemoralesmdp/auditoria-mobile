@@ -1,0 +1,46 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"_Type": "Section.Type.SimplePropertyCollection",
+					"Target": {
+						"Service": "/AuditoriaMobile/Services/Auditoria.service",
+						"EntitySet": "TipoAuditoria"
+					},
+					"_Name": "SectionSimplePropertyCollection0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"SimplePropertyCell": {
+						"KeyName": "{DESCRIPCION}",
+						"Value": "/AuditoriaMobile/Rules/Utils/FormatActivo.js",
+						"AccessoryType": "DisclosureIndicator",
+						"OnPress": "/AuditoriaMobile/Actions/NavToTipoAuditoria_Detail.action"
+					},
+					"Layout": {
+						"NumberOfColumns": 2
+					}
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TipoAuditoria_List",
+	"Caption": "Tipos de auditoría",
+	"PrefersLargeCaption": true
+}

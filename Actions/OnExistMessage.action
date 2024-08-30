@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "OnExistMessage"
+	},
+	"Message": "¿Esta seguro que desea salir?",
+	"Title": "Cerrar sesión",
+	"OKCaption": "Aceptar"
+}

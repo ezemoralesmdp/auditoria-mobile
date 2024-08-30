@@ -1,0 +1,9 @@
+{
+	"_Type": "Action.Type.Message",
+	"ActionResult": {
+		"_Name": "PushRegisterFailureMessage"
+	},
+	"Message": "Las actualizaciones no se pudieron aplicar.",
+	"Title": "Operación fallida",
+	"OKCaption": "Aceptar"
+}

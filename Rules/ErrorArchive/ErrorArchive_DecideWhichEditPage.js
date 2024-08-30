@@ -30,7 +30,7 @@ export default function ErrorArchive_DecideWhichEditPage(clientAPI) {
     // You can add more complex decision logic if needed
     switch (affectedEntityType) {
         case "Auditoria":
-            targetAction = "/AuditoriaMobile/Actions/NavToAuditoria_Edit.action";
+            targetAction = "/AuditoriaMobile/Actions/NavTo/Auditoria/NavToAuditoria_Edit.action";
             break;
         default:
             // Save the affected Entity's type in client data so that it can be displayed by the toast

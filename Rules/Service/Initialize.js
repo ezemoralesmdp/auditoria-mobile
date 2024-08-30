@@ -15,7 +15,7 @@ export default function Initialize(context) {
 
             "Name": "/AuditoriaMobile/Actions/GenericToastMessage.action",
             "Properties": {
-                "Message": "Application Services Initialized",
+                "Message": "Servicios de Auditoria inicializados",
                 "Animated": true,
                 "Duration": 1,
                 "IsIconHidden": true,

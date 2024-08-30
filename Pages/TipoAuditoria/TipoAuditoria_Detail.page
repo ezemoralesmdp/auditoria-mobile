@@ -1,0 +1,89 @@
+{
+	"Controls": [
+		{
+			"FilterFeedbackBar": {
+				"ShowAllFilters": false,
+				"_Type": "Control.Type.FilterFeedbackBar"
+			},
+			"_Type": "Control.Type.SectionedTable",
+			"_Name": "SectionedTable0",
+			"Sections": [
+				{
+					"ObjectHeader": {
+						"Subhead": "Subtítulo",
+						"Footnote": "Nota",
+						"Description": "Descripción",
+						"StatusText": "/AuditoriaMobile/Rules/Utils/FormatActivo.js",
+						"SubstatusText": "Subestado",
+						"DetailImage": "sap-icon://document-text",
+						"DetailImageIsCircular": false,
+						"BodyText": "Cuerpo",
+						"HeadlineText": "{DESCRIPCION}",
+						"StatusPosition": "Stacked",
+						"StatusImagePosition": "Leading",
+						"SubstatusImagePosition": "Leading"
+					},
+					"_Type": "Section.Type.ObjectHeader",
+					"_Name": "SectionObjectHeader0",
+					"Visible": true
+				},
+				{
+					"Separators": {
+						"TopSectionSeparator": false,
+						"BottomSectionSeparator": true,
+						"HeaderSeparator": true,
+						"FooterSeparator": true,
+						"ControlSeparator": true
+					},
+					"KeyAndValues": [
+						{
+							"Value": "{ID}",
+							"_Name": "KeyValue0",
+							"KeyName": "ID",
+							"Visible": true
+						}
+					],
+					"MaxItemCount": 1,
+					"_Type": "Section.Type.KeyValue",
+					"_Name": "SectionKeyValue0",
+					"Visible": true,
+					"EmptySection": {
+						"FooterVisible": false
+					},
+					"Layout": {
+						"NumberOfColumns": 2
+					}
+				}
+			]
+		}
+	],
+	"_Type": "Page",
+	"_Name": "TipoAuditoria_Detail",
+	"Caption": "Detalles",
+	"PrefersLargeCaption": true,
+	"ActionBar": {
+		"Items": [
+			{
+				"_Name": "ActionBarItem0",
+				"Caption": "Eliminar",
+				"SystemItem": "Trash",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Rules/Messages/TipoAuditoria/TipoAuditoria_DeleteConfirmation.js"
+			},
+			{
+				"_Name": "ActionBarItem1",
+				"Caption": "Editar",
+				"SystemItem": "Edit",
+				"Position": "Right",
+				"IsIconCircular": false,
+				"Visible": true,
+				"Style": "Icon",
+				"OnPress": "/AuditoriaMobile/Actions/NavTo/TipoAuditoria/NavToTipoAuditoria_Edit.action"
+			}
+		],
+		"_Name": "ActionBar1"
+	}
+}
